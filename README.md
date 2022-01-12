@@ -1,9 +1,12 @@
-# Nelson Barbosa - 12/01/2022
+# Glazed interview app
 
-# Instructions to run project:
+## Nelson Barbosa - 12/01/2022
 
-npm i
-npm start
+`Instructions to run project`
+
+In local repo:
+-> npm i
+-> npm start
 
 ## Getting Started with Create React App
 
