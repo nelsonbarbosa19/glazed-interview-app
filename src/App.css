@@ -27,6 +27,10 @@
   font-size: 50px;
 }
 
+.App-header > h1 > .brandName {
+  color: #303bd8;
+}
+
 .App-header > h2 {
   font-size: 40px;
   margin-top: 0px;

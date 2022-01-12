@@ -12,7 +12,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Glazed interview exercise</h1>
+        <h1>
+          <span className="brandName">Glazed</span> interview exercise
+        </h1>
         <h2 className="authorName">Nelson Barbosa</h2>
       </header>
 
@@ -197,6 +199,14 @@ function toString(segments: number[]): string {
   }
 
   /**
+   * Check if segments array elements are all zero.
+   * If yes, return zero IPv6 string.
+   */
+  if (segments.every((s) => s === 0)) {
+    return "0:0:0:0:0:0:0:0";
+  }
+
+  /**
    * Problem: Compact longest string of >1 zeroes should be converted to '::'.
    * Solution: Search for all zeros sequences, and save them in array, with the startIndex and endIndex of each sequence.
    */
@@ -212,7 +222,6 @@ function toString(segments: number[]): string {
      * If 0 is found.
      */
     if (sInt === 0) {
-      debugger;
       /**
        * If is the first 0, save as the current first zero index.
        */
@@ -225,8 +234,6 @@ function toString(segments: number[]): string {
        * If yes, save this 0 as the current last zero index.
        */
       if (index === segments.length - 1) {
-        debugger;
-
         /**
          * Check if zero start index is different from the current last index position.
          * If is the same, it means that is this 0 sequence case: [1, 1, 1, 1, 3, 1, 1, 0]. So, it's ignored.
@@ -273,7 +280,6 @@ function toString(segments: number[]): string {
        * If is different, it means that is a >1 length 0 sequence case like: [1, 1, 1, 1, 3, 0, 0, 0], [0, 0, 0, 1, 3, 1, 1, 1], or [0, 1, 0, 0, 0, 1, 0, 1].  So, it's allowed.
        */
       if (currentZeroStartIndex !== index - 1) {
-        debugger;
         /**
          * Save the current zero end index, with the previous index.
          */
@@ -298,8 +304,6 @@ function toString(segments: number[]): string {
     return sInt.toString(16).toLowerCase();
   });
 
-  debugger;
-
   /**
    * Check if IPV6 address has a <1 zero sequence, to collapse it with "::".
    * If yes, the solution:
@@ -315,8 +319,6 @@ function toString(segments: number[]): string {
    *       ["1", "", "3", "0", "2", "2"] -> "1::3:0:2:2"
    */
   if (zerosSequenceIndexes.length > 0) {
-    debugger;
-
     /**
      * Found the longest zero sequence found.
      */
@@ -360,11 +362,6 @@ function handleConvertSegmentsToIPv6Onclick(
     /\[| |\]/g,
     ""
   );
-
-  if (inputIPv6SegmentsString === "0,0,0,0,0,0,0,0") {
-    inputIPv6ResultRef.current.value = "0:0:0:0:0:0:0:0";
-    return;
-  }
 
   const inputIPv6Segments: number[] = inputIPv6SegmentsString
     .split(",")
